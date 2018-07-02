@@ -49,7 +49,7 @@
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">余额：</span></div>
-                        <input type="text" class="form-control" placeholder="用户编号" disabled value="0.00">
+                        <input type="text" class="form-control" placeholder="用户编号" disabled value="<?php echo $user['assets'] ?>">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">购买价格：</span></div>
@@ -57,11 +57,11 @@
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">购买数量：</span></div>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="buy-number">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">支付金额：</span></div>
-                        <input type="text" class="form-control" placeholder="用户编号" disabled value="0">
+                        <input type="text" class="form-control" placeholder="用户编号" disabled id="topay" value="0">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">二级密码：</span></div>
@@ -79,11 +79,11 @@
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">余额：</span></div>
-                        <input type="text" class="form-control" placeholder="用户编号" disabled value="100.0">
+                        <input type="text" class="form-control" placeholder="用户编号" disabled value="<?php echo $user['assets'] ?>">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">卖出数量：</span></div>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="sell-number">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">卖出价格：</span></div>
@@ -91,7 +91,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">收益：</span></div>
-                        <input type="text" class="form-control" placeholder="用户编号" disabled value="0">
+                        <input type="text" class="form-control" placeholder="用户编号" disabled id="income" value="0">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">二级密码：</span></div>
@@ -161,6 +161,23 @@ $(function () {
     load_trend();
     $('#trend-duration').on('change', function () {
         load_trend();
+    });
+
+    $('#buy-number').on('change', function () {
+        var price = parseFloat($('#latest_price_in').val());
+        var buy_num = parseFloat($('#buy-number').val());
+        if (buy_num > 0) {
+            $('#topay').val(price * buy_num)
+        }
+    });
+
+    $('#sell-number').on('change', function () {
+        var price = parseFloat($('#latest_price_out').val());
+        var sell_num = parseFloat($('#sell-number').val());
+        console.log(price * sell_num);
+        if (sell_num > 0) {
+            $('#income').val(price * sell_num)
+        }
     });
 });
 </script>
