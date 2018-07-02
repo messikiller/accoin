@@ -12,7 +12,7 @@ if (empty($username) || empty($password)) {
     exit();
 }
 
-$user = $db->getRow("select password from system_member where username='{$username}'");
+$user = $db->getRow("select * from system_member where username='{$username}'");
 
 if ($user['password'] != md5(md5($password))) {
     header('location:login.html');

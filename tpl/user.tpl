@@ -32,26 +32,35 @@
                     <span>个人信息</span>
                 </div>
                 <div class="card-body">
-                    <form action="#" method="post">
+                    <form action="user_action.php" method="post">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend"><span class="input-group-text">选择银行：</span></div>
+                            <select class="form-control" name="bank_id">
+                                <?php foreach ($banks as $bank) { ?>
+                                    <option
+                                        value="<?php echo $bank['id']; ?>"
+                                        <?php if (isset($member_data['bank_id']) && $member_data['bank_id'] == $bank['id']) { ?>
+                                            selected="selected"
+                                        <?php } ?>
+                                    ><?php echo $bank['name']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend"><span class="input-group-text">银行卡号：</span></div>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="card_number" value="<?php echo isset($member_data['card_number']) ? $member_data['card_number'] : '';?>">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend"><span class="input-group-text">持卡人姓名：</span></div>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="name" value="<?php echo isset($member_data['name']) ? $member_data['name'] : '';?>">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend"><span class="input-group-text">银行名字：</span></div>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="bank_name" value="<?php echo isset($member_data['bank_name']) ? $member_data['bank_name'] : '';?>">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend"><span class="input-group-text">开户支行：</span></div>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend"><span class="input-group-text">电话号码：</span></div>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="bank_address" value="<?php echo isset($member_data['bank_address']) ? $member_data['bank_address'] : '';?>">
                         </div>
                         <div class="input-group mb-3">
                             <button type="submit" class="btn btn-primary btn-block">提交</button>
