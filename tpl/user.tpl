@@ -22,6 +22,9 @@
         <li class="nav-item active">
             <a class="nav-link" href="user.php">用户 <span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="logout.php">退出</a>
+        </li>
     </ul>
 </nav>
 <div class="container">

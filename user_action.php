@@ -36,5 +36,5 @@ if (empty($data)) {
     $db->update('system_member_data', $update, "user_id={$uid}");
 }
 
-header('location:user.php');
+header('location:index.php');
 exit();

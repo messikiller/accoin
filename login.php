@@ -8,7 +8,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 if (empty($username) || empty($password)) {
-    header('location:login.php');
+    header('location:login.html');
     exit();
 }
 
