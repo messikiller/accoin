@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ACCOIN</title>
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="node_modules/highcharts/css/highcharts.css">
+<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/master.css">
+</head>
+<body class="login-bg">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="margin: 15px 0;">
+            <div class="card">
+                <div class="card-header">
+                    <span>走势图</span>
+                    <select class="float-right" id="trend-duration">
+                        <option value="10">10天</option>
+                        <option value="30">30天</option>
+                    </select>
+                </div>
+                <div class="card-body">
+                    <div id="trend"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <h5 class="card-header">我要买入</h5>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text">余额：</span></div>
+                        <input type="text" class="form-control" placeholder="用户编号" disabled value="0.00">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text">购买价格：</span></div>
+                        <select class="form-control">
+                            <option>元/个</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text">购买数量：</span></div>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text">支付金额：</span></div>
+                        <input type="text" class="form-control" placeholder="用户编号" disabled value="0">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text">二级密码：</span></div>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                        <a href="#" class="btn btn-primary btn-block">AT1支付</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <h5 class="card-header">我要卖出</h5>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text">余额：</span></div>
+                        <input type="text" class="form-control" placeholder="用户编号" disabled value="100.0">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text">收益：</span></div>
+                        <input type="text" class="form-control" placeholder="用户编号" disabled value="0.000/350000">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text">卖出数量：</span></div>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text">卖出价格：</span></div>
+                        <select class="form-control">
+                            <option>元/个</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text">二级密码：</span></div>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                        <a href="#" class="btn btn-primary btn-block">确认提交</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="node_modules/highcharts/highcharts.js"></script>
+<script type="text/javascript">
+function load_trend()
+{
+    var d = $('#trend-duration').val();
+    $.getJSON('api/trend.php', {duration: d}, function (res) {
+        if (res.code == 200) {
+            var points = res.data.points;
+            var prices = res.data.prices.map(function (item) {
+                return parseFloat(item);
+            });
+            Highcharts.chart('trend', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: false
+                },
+                xAxis: {
+                    categories: points
+                },
+                yAxis: {
+                    title: {
+                        text: '币价格 (元)'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [{
+                    name: '币价格',
+                    data: prices
+                }]
+            });
+        }
+    });
+}
+
+$(function () {
+    load_trend();
+    $('#trend-duration').on('change', function () {
+        load_trend();
+    });
+});
+</script>
+</body>
+</html>

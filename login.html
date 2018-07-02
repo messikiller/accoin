@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ACCOIN</title>
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="node_modules/highcharts/css/highcharts.css">
+<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/master.css">
+</head>
+<body class="login-bg">
+<div class="app">
+    <div class="card login-container">
+        <div class="card-body">
+            <div class="login-title">
+                <h5 class="card-title">ACCOIN 矿主登录</h5>
+                <hr>
+            </div>
+            <form action="login.php" method="post">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-user"></i></span></div>
+                    <input type="text" class="form-control" placeholder="用户编号" name="username">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-lock"></i></span></div>
+                    <input type="password" class="form-control" placeholder="用户密码" name="password">
+                </div>
+                <div class="input-group mb-3">
+                    <button type="submit" class="btn btn-primary btn-block">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="node_modules/highcharts/highcharts.js"></script>
+</body>
+</html>

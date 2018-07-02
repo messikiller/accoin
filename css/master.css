@@ -1,0 +1,25 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    width: 400px;
+}
+
+.login-bg {
+    background-color: #666;
+}
+
+.login-title {
+    text-align: center;
+    padding-top: 15px;
+}
