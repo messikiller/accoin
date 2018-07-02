@@ -9,4 +9,4 @@ if (empty($_SESSION['user'])) {
 
 $user = $_SESSION['user'];
 
-require_once(__DIR__.'/tpl/index.tpl');
+require_once(__DIR__.'/tpl/user.tpl');

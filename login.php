@@ -8,7 +8,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 if (empty($username) || empty($password)) {
-    header('location:login.html');
+    header('location:login.php');
     exit();
 }
 
@@ -21,5 +21,5 @@ if ($user['password'] != md5(md5($password))) {
 
 $_SESSION['user'] = $user;
 
-header('location:index.html');
+header('location:index.php');
 exit();
