@@ -35,7 +35,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">购买价格：</span></div>
-                        <input type="text" class="form-control" disabled value="元/个" id="latest_price">
+                        <input type="text" class="form-control" disabled id="latest_price_in">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">购买数量：</span></div>
@@ -69,9 +69,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">卖出价格：</span></div>
-                        <select class="form-control">
-                            <option>元/个</option>
-                        </select>
+                        <input type="text" class="form-control" disabled id="latest_price_out">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"><span class="input-group-text">收益：</span></div>
@@ -106,7 +104,8 @@ function load_trend()
 
             var len = prices.length;
             var latest_price = prices[len - 1] + '元/个';
-            $('#latest_price').val(latest_price);
+            $('#latest_price_in').val(latest_price);
+            $('#latest_price_out').val(latest_price);
 
             Highcharts.chart('trend', {
                 chart: {
